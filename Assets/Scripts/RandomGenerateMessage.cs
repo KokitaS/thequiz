@@ -1,15 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using Random = UnityEngine.Random;
 public class RandomGenerateMessage : MonoBehaviour
 {
     public Button soloStartButton;
+    public Button rankStartButton;
     private string str;
-    private Button button;
     private MessageGeter messageGeter;
     private string[] genres = new string[] {"歴史", "古代史", "中世史", "近現代史", "世界史", "日本史", "アジア史", "ヨーロッパ史", "アメリカ史", "アフリカ史",
     "考古学", "戦争", "革命", "文化地理", "気象", "都市計画","古代エジプト", "ハンムラビ法典", "ティグリス川", "ユーフラテス川", "インダス川文明",
@@ -455,22 +456,24 @@ public class RandomGenerateMessage : MonoBehaviour
     void Start()
     {
         messageGeter = gameObject.AddComponent<MessageGeter>();
-        button = GetComponent<Button>();
-        button.onClick.AddListener(() => RandomGenerate());
-        button.onClick.AddListener(() => SetButtonInteractable());
     }
-    void RandomGenerate(){
+    public void RandomGenerate(){
         int randomNum = Random.Range(0, genres.Length + 1);
         messageGeter.Generator(genres[randomNum]);
-        //Debug.Log(genres[randomNum] + genres.Length);
-    }
-
-    void SetButtonInteractable()
-    {
         if (MessageGeter.question != null)
         {
             soloStartButton.interactable = true;
         }
     }
-    
+    public void RankGenerate(){
+        Random.InitState(DateTime.Now.Month + DateTime.Now.Day);
+        Debug.Log(DateTime.Now.Month + DateTime.Now.Day);
+        int randomNum = (int)Random.Range(0, genres.Length + 1);
+        Debug.Log(randomNum);
+        messageGeter.Generator(genres[randomNum]);
+        if (MessageGeter.question != null)
+        {
+            rankStartButton.interactable = true;
+        }
+    }
 }
