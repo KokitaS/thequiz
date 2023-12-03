@@ -466,8 +466,8 @@ public class RandomGenerateMessage : MonoBehaviour
         }
     }
     public void RankGenerate(){
-        Random.InitState(DateTime.Now.Month + DateTime.Now.Day);
-        Debug.Log(DateTime.Now.Month + DateTime.Now.Day);
+        Random.InitState(DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day);
+        Debug.Log(DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day);
         int randomNum = (int)Random.Range(0, genres.Length + 1);
         Debug.Log(randomNum);
         messageGeter.Generator(genres[randomNum]);
