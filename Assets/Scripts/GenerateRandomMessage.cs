@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class RandomGenerateMessage : MonoBehaviour
+public class GenerateRandomMessage : MonoBehaviour
 {
-    public Button soloStartButton;
+    // public Button soloStartButton;
     private string str;
     private Button button;
     private MessageGeter messageGeter;
@@ -457,7 +457,7 @@ public class RandomGenerateMessage : MonoBehaviour
         messageGeter = gameObject.AddComponent<MessageGeter>();
         button = GetComponent<Button>();
         button.onClick.AddListener(() => RandomGenerate());
-        button.onClick.AddListener(() => SetButtonInteractable());
+        // button.onClick.AddListener(() => SetButtonInteractable());
     }
     void RandomGenerate(){
         int randomNum = Random.Range(0, genres.Length + 1);
@@ -465,12 +465,12 @@ public class RandomGenerateMessage : MonoBehaviour
         //Debug.Log(genres[randomNum] + genres.Length);
     }
 
-    void SetButtonInteractable()
-    {
-        if (MessageGeter.question != null)
-        {
-            soloStartButton.interactable = true;
-        }
-    }
+    // void SetButtonInteractable()
+    // {
+    //     if (MessageGeter.question != null)
+    //     {
+    //         soloStartButton.interactable = true;
+    //     }
+    // }
     
 }
